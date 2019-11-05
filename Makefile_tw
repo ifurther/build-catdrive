@@ -85,7 +85,7 @@ archlinux_clean:
 
 ifeq ($(build_archlinux),y)
 archlinux: archlinux_dl $(RESCUE_ROOTFS)
-	sudo ./tw/build-archlinux.sh release $(DL)/$(ARCHLINUX_PKG) $(DL_KERNEL) $(RESCUE_ROOTFS)
+	sudo tw/build-archlinux.sh release $(DL)/$(ARCHLINUX_PKG) $(DL_KERNEL) $(RESCUE_ROOTFS)
 else
 archlinux:
 endif
@@ -106,14 +106,14 @@ ubuntu_clean:
 
 ifeq ($(build_ubuntu),y)
 ubuntu: ubuntu_dl $(RESCUE_ROOTFS)
-	sudo ./tw/build-ubuntu.sh release $(DL)/$(UBUNTU_PKG) $(DL_KERNEL) $(RESCUE_ROOTFS)
+	sudo tw/build-ubuntu.sh release $(DL)/$(UBUNTU_PKG) $(DL_KERNEL) $(RESCUE_ROOTFS)
 else
 ubuntu:
 endif
 
 ifeq ($(build_debian),y)
 debian: dl_kernel $(RESCUE_ROOTFS)
-	sudo ./tw/build-debian.sh release - $(DL_KERNEL) $(RESCUE_ROOTFS)
+	sudo tw/build-debian.sh release - $(DL_KERNEL) $(RESCUE_ROOTFS)
 
 else
 debian:
