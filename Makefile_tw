@@ -58,7 +58,7 @@ $(RESCUE_ROOTFS):
 	@[ ! -f $(RESCUE_ROOTFS) ] && make rescue
 
 rescue: alpine_dl
-	sudo BUILD_RESCUE=y ./build-alpine.sh release $(DL)/$(ALPINE_PKG) $(DL_KERNEL) -
+	sudo BUILD_RESCUE=y ./tw/build-alpine.sh release $(DL)/$(ALPINE_PKG) $(DL_KERNEL) -
 
 ifeq ($(build_alpine),y)
 alpine: alpine_dl $(RESCUE_ROOTFS)
