@@ -20,8 +20,9 @@ DTB=armada-3720-catdrive.dtb
 
 chroot_prepare() {
 	if [ -z "$TRAVIS" ]; then
-		sed -i 's#http://dl-cdn.alpinelinux.org#https://mirrors.tuna.tsinghua.edu.cn#' $rootfs_mount_point/etc/apk/repositories
-		echo "nameserver 9.9.9.9" > $rootfs_mount_point/etc/resolv.conf
+		#sed -i 's#http://dl-cdn.alpinelinux.org#https://mirrors.tuna.tsinghua.edu.cn#' $rootfs_mount_point/etc/apk/repositories
+		sed -i 's#http://dl-cdn.alpinelinux.org#http://ftp.yzu.edu.tw/linux#' $rootfs_mount_point/etc/apk/repositories
+		echo "nameserver 119.29.29.29" > $rootfs_mount_point/etc/resolv.conf
 	else
 		echo "nameserver 8.8.8.8" > $rootfs_mount_point/etc/resolv.conf
 	fi
@@ -35,7 +36,9 @@ ext_init_param() {
 
 chroot_post() {
 	if [ -n "$TRAVIS" ]; then
-		sed -i 's#http://dl-cdn.alpinelinux.org#https://mirrors.tuna.tsinghua.edu.cn#' $rootfs_mount_point/etc/apk/repositories
+		#sed -i 's#http://dl-cdn.alpinelinux.org#https://mirrors.tuna.tsinghua.edu.cn#' $rootfs_mount_point/etc/apk/repositories
+		sed -i 's#http://dl-cdn.alpinelinux.org#http://ftp.yzu.edu.tw/linux#' $rootfs_mount_point/etc/apk/repositories
+
 	fi
 }
 
