@@ -6,6 +6,7 @@
 set -e
 set -o pipefail
 
+WorkDIR=$(cd .. & pwd)
 os="debian"
 os_ver="buster"
 rootsize=1000
@@ -13,9 +14,10 @@ rootsize=1000
 tmpdir="tmp"
 output="output"
 rootfs_mount_point="/mnt/${os}_rootfs"
-qemu_static="./tools/qemu/qemu-aarch64-static"
+qemu_static=$WorkDIR"/tools/qemu/qemu-aarch64-static"
 
-cur_dir=$(pwd)
+cur_dir=$WorkDIR
+#cur_dir=$(pwd)
 DTB=armada-3720-catdrive.dtb
 
 chroot_prepare() {
@@ -56,8 +58,8 @@ generate_rootfs() {
 
 add_resizemmc() {
 	echo "add resize mmc script"
-	cp ./tools/systemd/resizemmc.service $rootfs_mount_point/lib/systemd/system/
-	cp ./tools/systemd/resizemmc.sh $rootfs_mount_point/sbin/
+	cp $WorkDIR/tools/systemd/resizemmc.service $rootfs_mount_point/lib/systemd/system/
+	cp $WorkDIR/tools/systemd/resizemmc.sh $rootfs_mount_point/sbin/
 	mkdir -p $rootfs_mount_point/etc/systemd/system/basic.target.wants
 	ln -sf /lib/systemd/system/resizemmc.service $rootfs_mount_point/etc/systemd/system/basic.target.wants/resizemmc.service
 	touch $rootfs_mount_point/root/.need_resize
@@ -67,4 +69,4 @@ gen_new_name() {
 	echo "$os-$os_ver-catdrive-`date +%Y-%m-%d`"
 }
 
-source ./common.sh
+source $WorkDIR/common.sh
