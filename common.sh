@@ -67,7 +67,10 @@ func_generate() {
 
 	# chroot
 	echo "chroot to ${os} rootfs"
-	eval $(ext_init_param) LANG=C LC_ALL=C chroot $rootfs_mount_point /init.sh
+	if [ "${os}" = "alpine" ];then
+		eval $(ext_init_param) LANG=C LC_ALL=C chroot $rootfs_mount_point /init.sh /bin/ash
+	else
+		eval $(ext_init_param) LANG=C LC_ALL=C chroot $rootfs_mount_point /init.sh
 
 	# clean rootfs
 	rm -f $rootfs_mount_point/init.sh
