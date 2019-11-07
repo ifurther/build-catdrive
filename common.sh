@@ -71,6 +71,7 @@ func_generate() {
 		eval $(ext_init_param) LANG=C LC_ALL=C chroot $rootfs_mount_point /init.sh /bin/ash
 	else
 		eval $(ext_init_param) LANG=C LC_ALL=C chroot $rootfs_mount_point /init.sh
+	fi
 
 	# clean rootfs
 	rm -f $rootfs_mount_point/init.sh
