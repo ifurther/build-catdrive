@@ -11,7 +11,7 @@ addons:
     - binfmt-support
     - u-boot-tools
 script:
-- make -f Makefile_tw build_archlinux=y build_ubuntu=y build_debian=y build
+- make -f Makefile_tw build_archlinux=y build_ubuntu=y build
 - tree -hn output
 deploy:
   provider: releases
