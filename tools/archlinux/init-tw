@@ -16,7 +16,7 @@ echo "ttyMV0" >> ./etc/securetty
 echo "/dev/root / ext4 defaults,noatime,nodiratime,errors=remount-ro 0 1" >> ./etc/fstab
 
 # set ntp server
-sed -i '/^#NTP/cNTP=time1.aliyun.com 2001:470:0:50::2' ./etc/systemd/timesyncd.conf
+sed -i '/^#NTP/cNTP=tock.stdtime.gov.tw 2001:470:0:50::2' ./etc/systemd/timesyncd.conf
 
 # set sshd_config to allow root login
 sed -i '/^#PermitRootLogin/cPermitRootLogin yes' ./etc/ssh/sshd_config
@@ -26,7 +26,7 @@ echo 'en_US.UTF8 UTF-8' > ./etc/locale.gen
 locale-gen
 echo 'LANG=en_US.utf8' > ./etc/locale.conf
 echo 'KEYMAP=us' > ./etc/vconsole.conf
-ln -sf ../usr/share/zoneinfo/Asia/Shanghai ./etc/localtime
+ln -sf ../usr/share/zoneinfo/Asia/Taipei ./etc/localtime
 echo "vm.zone_reclaim_mode=1" > /etc/sysctl.d/99-vm-reclaim.conf
 echo "root:admin" |chpasswd
 

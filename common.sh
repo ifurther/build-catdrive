@@ -56,7 +56,11 @@ func_generate() {
 		echo "Could not configure binfmt for qemu!" && exit 1
 	fi
 
-	cp ./tools/${os}/init.sh $rootfs_mount_point/init.sh
+	if [ "$region" = "tw" ];then
+		cp ./tools/${os}/init-tw.sh $rootfs_mount_point/init.sh
+	else
+		cp ./tools/${os}/init.sh $rootfs_mount_point/init.sh
+	fi
 
 	# prepare for chroot
 	chroot_prepare

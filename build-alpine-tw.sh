@@ -18,6 +18,8 @@ qemu_static="./tools/qemu/qemu-aarch64-static"
 cur_dir=$(pwd)
 DTB=armada-3720-catdrive.dtb
 
+region="tw"
+
 chroot_prepare() {
 	if [ -z "$TRAVIS" ]; then
 		#sed -i 's#http://dl-cdn.alpinelinux.org#https://mirrors.tuna.tsinghua.edu.cn#' $rootfs_mount_point/etc/apk/repositories
